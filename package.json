@@ -1,0 +1,10 @@
+{
+  "name": "FlappyBird",
+  "uuid": "6225e3c2-eb2c-4cce-8ca8-9aee33143337",
+  "creator": {
+    "version": "3.8.5"
+  },
+  "dependencies": {
+    "cc": "^3.0.1"
+  }
+}
