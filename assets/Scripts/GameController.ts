@@ -3,6 +3,7 @@ import { _decorator, CCInteger, Component, input, Node,Input, EventKeyboard,KeyC
 import { Ground } from './Ground';
 import { Results } from './Results';
 import { Bird } from './Bird';
+import { PipePool } from './PipePool';
 
 const { ccclass, property } = _decorator;
 
@@ -27,6 +28,12 @@ public bird: Bird;
     tooltip: "This is Results"
 })
 public results: Results;
+
+@property({
+    type:PipePool,
+    tooltip: "This is PipePool"
+})
+public pipeQueue: PipePool;
 
 
 @property({
@@ -92,6 +99,12 @@ resetGame(){
     this.results.resetScore();
     this.startGame();
     this.initListener();
+    this.pipeQueue.reset();
+}
+
+passPipe(){
+
+    this.results.addScore();
 }
 
 }

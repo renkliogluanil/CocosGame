@@ -29,11 +29,13 @@ export class Pipes extends Component {
     public pipeSpeed: number //Final speed of the pipes
     public tempSpeed: number //Temporary speed of the pipes
 
+    isPass: boolean;
      onLoad(){
 
         this.game = find("GameController").getComponent("GameController");
         this.pipeSpeed = this.game.pipeSpeed;
         this.initialPosition();
+        this.isPass = false;
     }
 
     initialPosition(){
@@ -46,10 +48,33 @@ export class Pipes extends Component {
 
         this.tempStartLocationUp.y = topPipeHeight;
         this.tempStartLocationDown.y = (topPipeHeight - (gap *10));
-     
+
+        this.bottomPipe.setPosition(this.tempStartLocationDown);
+        this.topPipe.setPosition(this.tempStartLocationUp);
+
     }
 
-    update(){
+    update(deltaTime){
+
+        this.tempSpeed = this.pipeSpeed * deltaTime;
+
+        this.tempStartLocationDown = this.bottomPipe.position;
+        this.tempStartLocationUp = this.topPipe.position;
+
+        this.tempStartLocationDown.x -= this.tempSpeed;
+        this.tempStartLocationUp.x -= this.tempSpeed;
+
+        this.bottomPipe.setPosition(this.tempStartLocationDown);
+        this.topPipe.setPosition(this.tempStartLocationUp);
+
+        if(this.isPass == false && this.topPipe.position.x <= 0){
+            
+            this.isPass = true;
+            this.game.passPipe();
+
+            this.destroy();
+        }
+
 
     }
 
