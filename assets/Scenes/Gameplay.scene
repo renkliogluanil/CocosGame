@@ -153,8 +153,11 @@
     "results": {
       "__id__": 30
     },
-    "speed": 300,
-    "pipeSpeed": 200,
+    "pipeQueue": {
+      "__id__": 46
+    },
+    "speed": 250,
+    "pipeSpeed": 350,
     "_id": "82qztGGCJLy7dgV7ndFd4d"
   },
   {

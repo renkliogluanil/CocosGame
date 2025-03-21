@@ -48,12 +48,11 @@ public pipeSpeed: number = 200;
 
 
 protected onLoad(): void {
-
     this.initListener();
     this.results.resetScore();
     director.pause();
+    this.pipeQueue.initPool(); // Ensure this line is present
 }
-
 initListener(){
  
     input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -83,9 +82,10 @@ initListener(){
     }
 } 
 
-startGame(){
+startGame() {
     this.results.hideResults();
     director.resume();
+    this.createPipe(); // Ensure this line is present to create the first pipe
 }
 
 gameOver(){
@@ -104,7 +104,11 @@ resetGame(){
 
 passPipe(){
 
-    this.results.addScore();
+    this.results.addScore(); 
+}
+
+createPipe() {
+    this.pipeQueue.addPool();
 }
 
 }

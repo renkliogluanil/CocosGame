@@ -21,40 +21,26 @@ export class PipePool extends Component {
     public pool = new NodePool;
     public createPipe;
 
-    initPool(){
-
+    initPool() {
         let initCount = 3;
-
-        for(let i = 0; i < initCount; i++){
-
-             this.createPipe = instantiate(this.prefabPipes);
-
-            if(i == 0){
-
+        console.log("Initializing pool with", initCount, "pipes");
+        for (let i = 0; i < initCount; i++) {
+            this.createPipe = instantiate(this.prefabPipes);
+            if (i == 0) {
                 this.pipePoolHome.addChild(this.createPipe);
-            }
-
-            else{
-
+            } else {
                 this.pool.put(this.createPipe);
             }
-
-
         }
     }
 
-    addPool(){
-
-        if(this.pool.size() > 0){ //More than 1 item in the pool
-
+    addPool() {
+        console.log("Adding pipe to the scene");
+        if (this.pool.size() > 0) {
             this.createPipe = this.pool.get();
-            this.pipePoolHome.addChild(this.createPipe);
-        }
-
-        else{
+        } else {
             this.createPipe = instantiate(this.prefabPipes);
         }
-
         this.pipePoolHome.addChild(this.createPipe);
     }
 
