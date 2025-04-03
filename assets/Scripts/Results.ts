@@ -25,7 +25,7 @@ export class Results extends Component {
     updateScore(num: number){
         
         this.currentScore = num;
-        this.scoreLabel.string = " " + this.currentScore;
+        this.scoreLabel.string = "" + this.currentScore;
 
     }
 

@@ -54,34 +54,28 @@ export class Pipes extends Component {
 
     }
 
-    update(deltaTime){
-
+    update(deltaTime: number) {
         this.tempSpeed = this.pipeSpeed * deltaTime;
-
+    
         this.tempStartLocationDown = this.bottomPipe.position;
         this.tempStartLocationUp = this.topPipe.position;
-
+    
         this.tempStartLocationDown.x -= this.tempSpeed;
         this.tempStartLocationUp.x -= this.tempSpeed;
-
+    
         this.bottomPipe.setPosition(this.tempStartLocationDown);
         this.topPipe.setPosition(this.tempStartLocationUp);
-
-        if(this.isPass == false && this.topPipe.position.x <= 0){
-            
+    
+        if (this.isPass == false && this.topPipe.position.x <= 0) {
             this.isPass = true;
             this.game.passPipe();
-
-            
         }
-
-        if(this.topPipe.position.x <= 0 - this.scene.width +5)
-        {
+    
+        // Ensure the pipe is off-screen before spawning a new one
+        if (this.topPipe.position.x <= -this.scene.width) {
             this.game.createPipe();
             this.node.destroy();
         }
-
-
     }
 
 }

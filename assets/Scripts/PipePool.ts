@@ -22,8 +22,8 @@ export class PipePool extends Component {
     public createPipe;
 
     initPool() {
+        console.log("Initializing pool");
         let initCount = 3;
-        console.log("Initializing pool with", initCount, "pipes");
         for (let i = 0; i < initCount; i++) {
             this.createPipe = instantiate(this.prefabPipes);
             if (i == 0) {
@@ -35,6 +35,8 @@ export class PipePool extends Component {
     }
 
     addPool() {
+        if (this.pipePoolHome.children.length > 0) return; // Prevent multiple pipes at start
+    
         console.log("Adding pipe to the scene");
         if (this.pool.size() > 0) {
             this.createPipe = this.pool.get();
